@@ -14,7 +14,7 @@ $zip->archive();
 ```
 
 ### License
-AdminLteWpTheme is an open source project by [Erhan Kılıç](http://erhankilic.org) that is licensed under [MIT](http://opensource.org/licenses/MIT).
+zipMaster is an open source project by [Erhan Kılıç](http://erhankilic.org) that is licensed under [MIT](http://opensource.org/licenses/MIT).
 
 ### Contribution
 Contribution are always **welcome and recommended**! Here is how:
