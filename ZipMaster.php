@@ -1,9 +1,14 @@
 <?php
+namespace ZipMaster;
 
-class zipMaster
+/**
+ * Class ZipMaster
+ * @package ZipMaster
+ */
+class ZipMaster
 {
     /**
-     * @var ZipArchive
+     * @var \ZipArchive
      */
     private $zip;
     /**
@@ -13,24 +18,24 @@ class zipMaster
     private $excludes = [];
 
     /**
-     * zipMaster constructor.
+     * ZipMaster constructor.
      * @param string $output
      * @param string $folder
      * @param array $excludes
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(string $output, string $folder, array $excludes = [])
     {
         if (empty($output) || empty($folder)) {
-            throw new Exception('Output and folder can not be empty string!');
+            throw new \Exception('Output and folder can not be empty string!');
         }
         $this->folder = $folder;
         $this->excludes = $excludes;
-        $this->zip = new ZipArchive;
+        $this->zip = new \ZipArchive;
         try {
-            $this->zip->open($output, ZipArchive::CREATE);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            $this->zip->open($output, \ZipArchive::CREATE);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
         }
     }
 
@@ -48,12 +53,12 @@ class zipMaster
             while (false !== ($entry = readdir($handle))) {
                 // If file or directory isn't in excludes
                 if ($entry != "." && $entry != ".." && !in_array($entry, $this->excludes)) {
-                    if (is_dir($entry)) {
-                        // If it's directory, call archiveFolder funcion again
-                        $this->archiveFolder($entry, $dir . '/' . $entry);
+                    if (is_dir($folder . '/' . $entry)) {
+                        // If it's directory, call archiveFolder function again
+                        $this->archiveFolder($folder . '/' . $entry, $dir . '/' . $entry);
                     } else {
                         // Add all files inside the directory
-                        $this->zip->addFile($entry, $dir . '/' . $entry);
+                        $this->zip->addFile($folder . '/' . $entry, $dir . '/' . $entry);
                     }
                 }
             }
