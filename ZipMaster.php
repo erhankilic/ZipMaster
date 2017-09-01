@@ -4,16 +4,16 @@ namespace ZipMaster;
 /**
  * Class ZipMaster
  * @package ZipMaster
+ * @author Erhan Kılıç <erhan_kilic@outlook.com> http://erhankilic.org
+ * @version 1.0
+ * @access public
+ * @param $zip
+ * @param $folder
+ * @param $excludes
  */
 class ZipMaster
 {
-    /**
-     * @var \ZipArchive
-     */
     private $zip;
-    /**
-     * @var string
-     */
     private $folder;
     private $excludes = [];
 
@@ -45,6 +45,7 @@ class ZipMaster
      *
      * @param string $folder
      * @param string $dir
+     * @access private
      */
     private function archiveFolder(string $folder, string $dir = 'archive')
     {
@@ -68,6 +69,7 @@ class ZipMaster
 
     /**
      * Archive the folder
+     * @access public
      */
     public function archive()
     {
