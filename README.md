@@ -1,4 +1,4 @@
-# zipMaster
+# ZipMaster
 Create zips with php. You can create zip with folders or files.
 
 We don't have to think about the folders anymore.
@@ -14,7 +14,7 @@ $zip->archive();
 ```
 
 ### License
-zipMaster is an open source project by [Erhan Kılıç](http://erhankilic.org) that is licensed under [MIT](http://opensource.org/licenses/MIT).
+ZipMaster is an open source project by [Erhan Kılıç](http://erhankilic.org) that is licensed under [MIT](http://opensource.org/licenses/MIT).
 
 ### Contribution
 Contribution are always **welcome and recommended**! Here is how:
