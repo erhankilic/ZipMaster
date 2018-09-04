@@ -13,6 +13,8 @@ namespace ZipMaster;
  */
 class ZipMaster
 {
+    const ROOT_DIR_NAME = 'archive';
+
     private $zip;
     private $folder;
     private $excludes = [];
@@ -22,9 +24,10 @@ class ZipMaster
      * @param string $output
      * @param string $folder
      * @param array $excludes
+     * @param bool $replace
      * @throws \Exception
      */
-    public function __construct(string $output, string $folder, array $excludes = [])
+    public function __construct(string $output, string $folder, array $excludes = [], bool $replace = true)
     {
         if (empty($output) || empty($folder)) {
             throw new \Exception('Output and folder can not be empty string!');
@@ -33,6 +36,11 @@ class ZipMaster
         $this->excludes = $excludes;
         $this->zip = new \ZipArchive;
         try {
+            // Replace previously created archive instead of updating it
+            if ($replace && file_exists($output)) {
+                unlink($output);
+            }
+
             $this->zip->open($output, \ZipArchive::CREATE);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
@@ -47,7 +55,7 @@ class ZipMaster
      * @param string $dir
      * @access private
      */
-    private function archiveFolder(string $folder, string $dir = 'archive')
+    private function archiveFolder(string $folder, string $dir)
     {
         if ($handle = opendir($folder)) {
             // Read all files and directories
@@ -69,11 +77,13 @@ class ZipMaster
 
     /**
      * Archive the folder
+     * 
+     * @param string $rootDirName
      * @access public
      */
-    public function archive()
+    public function archive(string $rootDirName = self::ROOT_DIR_NAME)
     {
-        $this->archiveFolder($this->folder);
+        $this->archiveFolder($this->folder,  $rootDirName);
         $this->zip->close();
     }
 }
