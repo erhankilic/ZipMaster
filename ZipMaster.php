@@ -13,8 +13,6 @@ namespace ZipMaster;
  */
 class ZipMaster
 {
-    const ROOT_DIR_NAME = 'archive';
-
     private $zip;
     private $folder;
     private $excludes = [];
@@ -52,10 +50,10 @@ class ZipMaster
      * If there is directory, it calls itself again.
      *
      * @param string $folder
-     * @param string $dir
+     * @param string|null $dir
      * @access private
      */
-    private function archiveFolder(string $folder, string $dir)
+    private function archiveFolder(string $folder, $dir = null)
     {
         if ($handle = opendir($folder)) {
             // Read all files and directories
@@ -78,12 +76,12 @@ class ZipMaster
     /**
      * Archive the folder
      * 
-     * @param string $rootDirName
+     * @param string|null $rootDirName
      * @access public
      */
-    public function archive(string $rootDirName = self::ROOT_DIR_NAME)
+    public function archive($rootDirName = null)
     {
-        $this->archiveFolder($this->folder,  $rootDirName);
+        $this->archiveFolder($this->folder, $rootDirName);
         $this->zip->close();
     }
 }
