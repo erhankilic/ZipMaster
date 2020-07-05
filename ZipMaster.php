@@ -4,7 +4,7 @@ namespace ZipMaster;
 /**
  * Class ZipMaster
  * @package ZipMaster
- * @author Erhan Kılıç <erhan_kilic@outlook.com> http://erhankilic.org
+ * @author Erhan Kılıç <erhan_kilic@outlook.com> https://github.com/erhankilic/ZipMaster
  * @version 1.0
  * @access public
  * @param $zip
